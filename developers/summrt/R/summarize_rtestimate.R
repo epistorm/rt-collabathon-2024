@@ -9,11 +9,18 @@ summarize_rtestimate.default <- function(x, ...) {
 summarize_rtestimate.cv_poisson_rt <- function(
     x, level = 0.95, lambda, ...) {
 
-  cb <- confband(x, lambda = lambda, level = level, ...)
+  if (!requireNamespace("rtestim", quietly = TRUE)) {
+    cli::cli_abort("You must install the {.pkg rtestim} package for this functionality.")
+  }
+
+  checkmate::assert_numeric(level, lower = 0, upper = 1, len = 1L)
+  cb <- rtestim::confband(x, lambda = lambda, level = level, ...)
+  alpha <- (1 - level) / 2
+  cb_nms <- c(alpha, 1 - alpha)
   tibble::tibble(
     Date = x$x,
-    Rt_median = fitted(x, lambda = lambda)
-    Rt_lb = x$x,
-    Rt_ub = x$x
+    Rt_median = cb$fit,
+    Rt_lb = cb[[2]], # danger
+    Rt_ub = cb[[3]]
   )
 }
