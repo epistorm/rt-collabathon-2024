@@ -1,0 +1,13 @@
+The line list files report the hospitalizations of a synthetic epidemic across 3 locations (California, North Carolina and Massachusetts).
+
+There are 10 stochastic realizations for each state.
+
+Columns
+-run_id: stochastic realization id
+-indiv_idx: individual id
+-state_name
+-county_full_name
+-infection_date: Date of infection (S-->L)
+-hospitalization_date: Date of hospitalization 
+-reporting_date: Date the hospitalization was reported in the reporting system.
+
