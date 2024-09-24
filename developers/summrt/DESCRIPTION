@@ -15,3 +15,5 @@ Imports:
     tibble
 Suggests: 
     rtestim
+Remotes:
+    dajmcdon/rtestim
