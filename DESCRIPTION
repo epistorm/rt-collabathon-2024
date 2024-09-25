@@ -14,5 +14,5 @@ Imports:
     cli,
     tibble
 Suggests: 
-    rtestim, tinytest
+    rtestim, tinytest, epinow2
 Remotes: dajmcdon/rtestim
