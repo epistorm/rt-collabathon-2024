@@ -6,17 +6,17 @@
 #' @param date Integer vector. vector of index dates.
 #' @param median Double vector. vector of median values.
 #' @param lb Double vector. vector of lower bounds.
-#' @param up Double vector. vector of upper bounds.
+#' @param ub Double vector. vector of upper bounds.
 #' @param package String. Name of the package.
 #' @export 
 #' @return A list of class `summrt_summary`. with the following components:
 #' - `date`: Integer vector. vector of index dates.
 #' - `median`: Double vector. vector of median values.
 #' - `lb`: Double vector. vector of lower bounds.
-#' - `up`: Double vector. vector of upper bounds.
+#' - `ub`: Double vector. vector of upper bounds.
 #' - `package`: String. Name of the package.
 new_summarize <- function(
-  date, median, lb, up, package
+  date, median, lb, ub, package
 ) {
 
   # Asserting the types
@@ -32,7 +32,7 @@ new_summarize <- function(
   len_lb <- length(lb)
   len_up <- length(up)
   if (len_date != len_median || len_date != len_lb || len_date != len_up) {
-    stop("The length of the date, median, lb, and up should be the same.")
+    stop("The length of the date, median, lb, and ub should be the same.")
   }
 
   structure(
@@ -40,7 +40,7 @@ new_summarize <- function(
       date = date,
       median = median,
       lb = lb,
-      up = up,
+      ub = ub,
       package = package
     ),
     class = "summrt_summary"
@@ -133,7 +133,7 @@ summarize_rtestimate.estimate_R <- function(x, ...) {
     date    = x$R$t_end,
     median  = x$R$`Median(R)`,
     lb      = x$R$`Quantile.0.025(R)`,
-    up      = x$R$`Quantile.0.975(R)`,
+    ub      = x$R$`Quantile.0.975(R)`,
     package = "EpiEstim"
   )
 }
