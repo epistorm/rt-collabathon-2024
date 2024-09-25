@@ -1,3 +1,3 @@
 ## R package
 
-You can find the `summrt` R package under [developers/summrt](developers/summrt) directory.
+You can find the `summrt` R package at <https://github.com/EpiForeSITE/summrt>.
