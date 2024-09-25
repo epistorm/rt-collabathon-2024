@@ -2,9 +2,12 @@
 % Please edit documentation in R/summarize_rtestimate.R
 \name{new_summrt}
 \alias{new_summrt}
+\alias{print.summrt_summary}
 \title{Create a new summary object}
 \usage{
 new_summrt(date, median, lb, ub, package, notes)
+
+\method{print}{summrt_summary}(x, ...)
 }
 \arguments{
 \item{date}{Integer vector. vector of index dates.}
