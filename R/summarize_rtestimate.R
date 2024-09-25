@@ -83,7 +83,7 @@ summarize_rtestimate.cv_poisson_rt <- function(
     cli::cli_abort("You must install the {.pkg rtestim} package for this functionality.")
   }
 
-  checkmate::assert_number(lambda, lower = 0)
+  checkmate::assert_string(lambda)
   checkmate::assert_number(level, lower = 0, upper = 1)
   cb <- rtestim::confband(x, lambda = lambda, level = level, ...)
 
