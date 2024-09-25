@@ -1,11 +1,20 @@
 
 #' Create a new summary object
+#' 
+#' Creates a new summary object for the `summrt` package while validating the input.
+#' 
 #' @param date Integer vector. vector of index dates.
 #' @param median Double vector. vector of median values.
 #' @param lb Double vector. vector of lower bounds.
 #' @param up Double vector. vector of upper bounds.
 #' @param package String. Name of the package.
 #' @export 
+#' @return A list of class `summrt_summary`. with the following components:
+#' - `date`: Integer vector. vector of index dates.
+#' - `median`: Double vector. vector of median values.
+#' - `lb`: Double vector. vector of lower bounds.
+#' - `up`: Double vector. vector of upper bounds.
+#' - `package`: String. Name of the package.
 new_summarize <- function(
   date, median, lb, up, package
 ) {
@@ -112,6 +121,7 @@ summarize_rtestimate.epinow <- function(x, level = 0.95, ...) {
 }
 
 #' @export 
+#' @details The `estimate_R` method is for the `EpiEstim` package.
 #' @rdname summarize_rtestimate
 summarize_rtestimate.estimate_R <- function(x, ...) {
   if (!requireNamespace("EpiEstim", quietly = TRUE)) {
@@ -120,10 +130,10 @@ summarize_rtestimate.estimate_R <- function(x, ...) {
   checkmate::assert_number(level, lower = 0, upper = 1)
   
   new_summarize(
-    date = x$R$t_end,
-    median = x$R$`Median(R)`,
-    lb = x$R$`Quantile.0.025(R)`,
-    up = x$R$`Quantile.0.975(R)`,
+    date    = x$R$t_end,
+    median  = x$R$`Median(R)`,
+    lb      = x$R$`Quantile.0.025(R)`,
+    up      = x$R$`Quantile.0.975(R)`,
     package = "EpiEstim"
   )
 }

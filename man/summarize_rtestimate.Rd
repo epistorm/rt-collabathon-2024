@@ -33,3 +33,6 @@ summarize_rtestimate(x, ...)
 \description{
 Extract Rt estimation from a model fit
 }
+\details{
+The \code{estimate_R} method is for the \code{EpiEstim} package.
+}

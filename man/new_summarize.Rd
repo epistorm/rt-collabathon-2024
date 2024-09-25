@@ -17,6 +17,16 @@ new_summarize(date, median, lb, up, package)
 
 \item{package}{String. Name of the package.}
 }
+\value{
+A list of class \code{summrt_summary}. with the following components:
+\itemize{
+\item \code{date}: Integer vector. vector of index dates.
+\item \code{median}: Double vector. vector of median values.
+\item \code{lb}: Double vector. vector of lower bounds.
+\item \code{up}: Double vector. vector of upper bounds.
+\item \code{package}: String. Name of the package.
+}
+}
 \description{
-Create a new summary object
+Creates a new summary object for the \code{summrt} package while validating the input.
 }
