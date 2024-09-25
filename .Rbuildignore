@@ -4,3 +4,4 @@
 ^README\.Rmd$
 ^summrt\.Rproj$
 ^\.github$
+^\.Rproj\.user$

@@ -8,7 +8,7 @@
 #' @param ub Double vector. vector of upper bounds.
 #' @param package String. Name of the package.
 #' @param notes String. Notes about the summary.
-#' @export 
+#' @export
 #' @return A list of class `summrt_summary`. with the following components:
 #' - `estimates`: A tibble with the following columns:
 #'   - `date`: Integer vector. vector of index dates.
@@ -54,7 +54,7 @@ new_summrt <- function(
 }
 
 #' @export
-#' @rdname new_summrt 
+#' @rdname new_summrt
 #' @param x An object of class `summrt_summary`.
 #' @param ... Additional arguments passed to methods.
 print.summrt_summary <- function(x, ...) {
@@ -87,7 +87,7 @@ summarize_rtestimate.default <- function(x, ..., notes = "") {
 #' @param level Confidence level for the confidence interval.
 #' @param lambda The Poisson parameter (`cv_poisson_rt`).
 summarize_rtestimate.cv_poisson_rt <- function(
-    x, level = 0.95, lambda = "lambda.1se", ...,
+    x, level = 0.95, lambda = c("lambda.1se", "lambda.min"), ...,
     notes = "cv_poisson_rt"
     ) {
 
@@ -95,7 +95,11 @@ summarize_rtestimate.cv_poisson_rt <- function(
     cli::cli_abort("You must install the {.pkg rtestim} package for this functionality.")
   }
 
-  checkmate::assert_string(lambda)
+  if (is.character(lambda)) {
+    lambda <- x[[match.arg(lambda)]]
+  } else {
+    checkmate::assert_number(lambda, lower = 0)
+  }
   checkmate::assert_number(level, lower = 0, upper = 1)
   cb <- rtestim::confband(x, lambda = lambda, level = level, ...)
 
@@ -121,14 +125,14 @@ summarize_rtestimate.poisson_rt <- function(x, level = 0.95, lambda = NULL, ...,
   if (is.null(lambda)) {
     lambda <- 10^stats::median(log10(x$lambda))
   }
-  checkmate::assert_string(lambda)
+  checkmate::assert_number(lambda, lower = 0)
   checkmate::assert_number(level, lower = 0, upper = 1)
   cb <- rtestim::confband(x, lambda = lambda, level = level, ...)
-  
+
   new_summrt(
     date = as.integer(x$x),
     median = cb$fit,
-    lb = cb[[2]], 
+    lb = cb[[2]],
     ub = cb[[3]],
     package = "rtestim",
     notes = notes
@@ -148,7 +152,7 @@ summarize_rtestimate.epinow <- function(x, level = 0.95, ..., notes = "") {
   t_max <- max(lubridate::ymd(x$estimates$observations$date), na.rm = TRUE)
   t_min <- min(lubridate::ymd(x$estimates$observations$date), na.rm = TRUE)
   t_length <- as.integer(t_max - t_min)
-  
+
   return(new_summrt(
     date = c(0:t_length, (t_length + 1):(t_length + 7)),
     median = apply(y_extract, 2, stats::quantile, probs = 0.5),
@@ -157,7 +161,7 @@ summarize_rtestimate.epinow <- function(x, level = 0.95, ..., notes = "") {
     package = "EpiNow2",
     notes = notes
   ))
-  
+
 }
 
 #' @export
@@ -167,7 +171,7 @@ summarize_rtestimate.estimate_R <- function(x, ..., notes = "") {
   if (!requireNamespace("EpiEstim", quietly = TRUE)) {
     cli::cli_abort("You must install the {.pkg EpiEstim} package for this functionality.")
   }
-  
+
   new_summrt(
     date    = as.integer(x$R$t_end),
     median  = x$R$`Median(R)`,
