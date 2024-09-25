@@ -53,6 +53,18 @@ new_summrt <- function(
   )
 }
 
+#' @export
+#' @rdname new_summrt 
+#' @param x An object of class `summrt_summary`.
+#' @param ... Additional arguments passed to methods.
+print.summrt_summary <- function(x, ...) {
+  cat("Summary of Rt estimation\n")
+  cat("Package : ", x$package, "\n")
+  cat("Notes   : ", x$notes, "\n")
+  print(x$estimates)
+  invisible(x)
+}
+
 #' Extract Rt estimation from a model fit
 #' @param x Object to extract Rt from.
 #' @param ... Additional arguments passed to methods.
