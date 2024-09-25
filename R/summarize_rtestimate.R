@@ -142,6 +142,7 @@ summarize_rtestimate.epinow <- function(x, level = 0.95, ..., notes = "") {
     median = apply(y_extract, 2, stats::quantile, probs = 0.5),
     lb = apply(y_extract, 2, stats::quantile, probs = 0.025),
     ub = apply(y_extract, 2, stats::quantile, probs = 0.975),
+    package = "EpiNow2",
     notes = notes
   ))
   
