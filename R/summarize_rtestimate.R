@@ -181,7 +181,7 @@ summarize_rtestimate.estimate_R <- function(x, ..., notes = "") {
 #' @export
 #' @details The `Rt` method is for the `EpiLPS` package.
 #' @rdname summarize_rtestimate
-summarize_rtestimate.Rt <- function(x, ...) {
+summarize_rtestimate.Rt <- function(x, ..., notes = "") {
   if (!requireNamespace("EpiLPS", quietly = TRUE)) {
     cli::cli_abort("You must install the {.pkg EpiLPS} package for this functionality.")
   }
@@ -191,6 +191,7 @@ summarize_rtestimate.Rt <- function(x, ...) {
     median  = x$RLPS$Rq0.50,
     lb      = x$RLPS$Rq0.025,
     ub      = x$RLPS$Rq0.975,
-    package = "EpiLPS"
+    package = "EpiLPS",
+    notes   = notes
   )
 }
