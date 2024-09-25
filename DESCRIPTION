@@ -5,6 +5,7 @@ Authors@R:
     person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: What the package does (one paragraph).
+Website: https://github.com/EpiForeSITE/summrt, https://EpiForeSITE.github.io/summrt
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -14,5 +15,5 @@ Imports:
     cli,
     tibble
 Suggests: 
-    rtestim, tinytest, epinow2
+    rtestim, tinytest, EpiNow2
 Remotes: dajmcdon/rtestim
