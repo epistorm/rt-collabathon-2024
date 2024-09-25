@@ -112,8 +112,8 @@ summarize_rtestimate.poisson_rt <- function(x, level = 0.95, lambda = NULL, ...)
 #' @export
 summarize_rtestimate.epinow <- function(x, level = 0.95, ...) {
 
-  if (!requireNamespace("epinow2", quietly = TRUE)) {
-    cli::cli_abort("You must install the {.pkg epinow2} package for this functionality.")
+  if (!requireNamespace("EpiNow2", quietly = TRUE)) {
+    cli::cli_abort("You must install the {.pkg EpiNow2} package for this functionality.")
   }
   checkmate::assert_number(level, lower = 0, upper = 1)
 
