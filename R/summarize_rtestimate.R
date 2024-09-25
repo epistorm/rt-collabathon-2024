@@ -1,14 +1,13 @@
-
 #' Create a new summary object
-#' 
+#'
 #' Creates a new summary object for the `summrt` package while validating the input.
-#' 
+#'
 #' @param date Integer vector. vector of index dates.
 #' @param median Double vector. vector of median values.
 #' @param lb Double vector. vector of lower bounds.
 #' @param ub Double vector. vector of upper bounds.
 #' @param package String. Name of the package.
-#' @export 
+#' @export
 #' @return A list of class `summrt_summary`. with the following components:
 #' - `date`: Integer vector. vector of index dates.
 #' - `median`: Double vector. vector of median values.
@@ -115,12 +114,11 @@ summarize_rtestimate.epinow <- function(x, level = 0.95, ...) {
   if (!requireNamespace("EpiNow2", quietly = TRUE)) {
     cli::cli_abort("You must install the {.pkg EpiNow2} package for this functionality.")
   }
-  checkmate::assert_number(level, lower = 0, upper = 1)
 
   # res <- x$estimates$summarized |> dplyr::select()
 }
 
-#' @export 
+#' @export
 #' @details The `estimate_R` method is for the `EpiEstim` package.
 #' @rdname summarize_rtestimate
 summarize_rtestimate.estimate_R <- function(x, ...) {
@@ -128,12 +126,29 @@ summarize_rtestimate.estimate_R <- function(x, ...) {
   if (!requireNamespace("EpiEstim", quietly = TRUE)) {
     cli::cli_abort("You must install the {.pkg EpiEstim} package for this functionality.")
   }
-  
+
   new_summarize(
     date    = x$R$t_end,
     median  = x$R$`Median(R)`,
     lb      = x$R$`Quantile.0.025(R)`,
     ub      = x$R$`Quantile.0.975(R)`,
     package = "EpiEstim"
+  )
+}
+
+#' @export
+#' @details The `Rt` method is for the `EpiLPS` package.
+#' @rdname summarize_rtestimate
+summarize_rtestimate.Rt <- function(x, ...) {
+  if (!requireNamespace("EpiLPS", quietly = TRUE)) {
+    cli::cli_abort("You must install the {.pkg EpiLPS} package for this functionality.")
+  }
+
+  new_summarize(
+    date    = x$RLPS$Time,
+    median  = x$RLPS$Rq0.50,
+    lb      = x$RLPS$Rq0.025,
+    ub      = x$RLPS$Rq0.975,
+    package = "EpiLPS"
   )
 }

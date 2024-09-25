@@ -7,6 +7,7 @@
 \alias{summarize_rtestimate.poisson_rt}
 \alias{summarize_rtestimate.epinow}
 \alias{summarize_rtestimate.estimate_R}
+\alias{summarize_rtestimate.Rt}
 \title{Extract Rt estimation from a model fit}
 \usage{
 summarize_rtestimate(x, ...)
@@ -20,6 +21,8 @@ summarize_rtestimate(x, ...)
 \method{summarize_rtestimate}{epinow}(x, level = 0.95, ...)
 
 \method{summarize_rtestimate}{estimate_R}(x, ...)
+
+\method{summarize_rtestimate}{Rt}(x, ...)
 }
 \arguments{
 \item{x}{Object to extract Rt from.}
@@ -35,4 +38,6 @@ Extract Rt estimation from a model fit
 }
 \details{
 The \code{estimate_R} method is for the \code{EpiEstim} package.
+
+The \code{Rt} method is for the \code{EpiLPS} package.
 }
