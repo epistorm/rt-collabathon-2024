@@ -63,5 +63,5 @@ summarize_rtestimate.epinow <- function(x, level = 0.95, ...) {
   }
   checkmate::assert_number(level, lower = 0, upper = 1)
 
-  res <- x$estimates$summarized %>% dplyr::select()
+  res <- x$estimates$summarized |> dplyr::select()
 }
