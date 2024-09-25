@@ -36,6 +36,8 @@ summarize_rtestimate.cv_poisson_rt <- function(
   )
 }
 
+#' @rdname summarize_rtestimate
+#' @export
 summarize_rtestimate.poisson_rt <- function(x, level = 0.95, lambda = NULL, ...) {
 
   if (!requireNamespace("rtestim", quietly = TRUE)) {
@@ -56,6 +58,8 @@ summarize_rtestimate.poisson_rt <- function(x, level = 0.95, lambda = NULL, ...)
   )
 }
 
+#' @rdname summarize_rtestimate
+#' @export
 summarize_rtestimate.epinow <- function(x, level = 0.95, ...) {
 
   if (!requireNamespace("epinow2", quietly = TRUE)) {

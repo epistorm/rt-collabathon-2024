@@ -4,13 +4,19 @@
 \alias{summarize_rtestimate}
 \alias{summarize_rtestimate.default}
 \alias{summarize_rtestimate.cv_poisson_rt}
+\alias{summarize_rtestimate.poisson_rt}
+\alias{summarize_rtestimate.epinow}
 \title{Extract Rt estimation from a model fit}
 \usage{
 summarize_rtestimate(x, ...)
 
 \method{summarize_rtestimate}{default}(x, ...)
 
-\method{summarize_rtestimate}{cv_poisson_rt}(x, level = 0.95, lambda, ...)
+\method{summarize_rtestimate}{cv_poisson_rt}(x, level = 0.95, lambda = "lambda.1se", ...)
+
+\method{summarize_rtestimate}{poisson_rt}(x, level = 0.95, lambda = NULL, ...)
+
+\method{summarize_rtestimate}{epinow}(x, level = 0.95, ...)
 }
 \arguments{
 \item{x}{Object to extract Rt from.}

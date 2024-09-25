@@ -2,6 +2,8 @@
 
 S3method(summarize_rtestimate,cv_poisson_rt)
 S3method(summarize_rtestimate,default)
+S3method(summarize_rtestimate,epinow)
+S3method(summarize_rtestimate,poisson_rt)
 export(summarize_rtestimate)
 importFrom(cli,cli_abort)
 importFrom(tibble,tibble)
