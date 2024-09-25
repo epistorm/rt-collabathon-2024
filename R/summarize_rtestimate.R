@@ -100,7 +100,7 @@ summarize_rtestimate.cv_poisson_rt <- function(
   cb <- rtestim::confband(x, lambda = lambda, level = level, ...)
 
   new_summrt(
-    date = x$x,
+    date = as.integer(x$x),
     median = cb$fit,
     lb = cb[[2]], # danger
     ub = cb[[3]],
@@ -121,12 +121,12 @@ summarize_rtestimate.poisson_rt <- function(x, level = 0.95, lambda = NULL, ...,
   if (is.null(lambda)) {
     lambda <- 10^stats::median(log10(x$lambda))
   }
-  checkmate::assert_number(lambda, lower = 0)
+  checkmate::assert_string(lambda)
   checkmate::assert_number(level, lower = 0, upper = 1)
   cb <- rtestim::confband(x, lambda = lambda, level = level, ...)
   
   new_summrt(
-    date = x$x,
+    date = as.integer(x$x),
     median = cb$fit,
     lb = cb[[2]], 
     ub = cb[[3]],
