@@ -118,7 +118,8 @@ summarize_rtestimate.poisson_rt <- function(x, level = 0.95, lambda = NULL, ...,
     median = cb$fit,
     lb = cb[[2]], 
     ub = cb[[3]],
-    package = "rtestim"
+    package = "rtestim",
+    notes = notes
   )
 }
 
@@ -140,7 +141,8 @@ summarize_rtestimate.epinow <- function(x, level = 0.95, ..., notes = "") {
     date = c(0:t_length, (t_length + 1):(t_length + 7)),
     median = apply(y_extract, 2, stats::quantile, probs = 0.5),
     lb = apply(y_extract, 2, stats::quantile, probs = 0.025),
-    ub = apply(y_extract, 2, stats::quantile, probs = 0.975)
+    ub = apply(y_extract, 2, stats::quantile, probs = 0.975),
+    notes = notes
   ))
   
 }
@@ -158,7 +160,8 @@ summarize_rtestimate.estimate_R <- function(x, ..., notes = "") {
     median  = x$R$`Median(R)`,
     lb      = x$R$`Quantile.0.025(R)`,
     ub      = x$R$`Quantile.0.975(R)`,
-    package = "EpiEstim"
+    package = "EpiEstim",
+    notes   = notes
   )
 }
 
