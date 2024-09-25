@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/epistorm/rt-collabathon-2024/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/epistorm/rt-collabathon-2024/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/EpiForeSITE/summrt/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/EpiForeSITE/summrt/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of summrt is to …
@@ -17,10 +17,7 @@ You can install the development version of summrt from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github(
-  "epistorm/rt-collabathon-2024",
-  subdir="developers/summrt"
-  )
+devtools::install_github("EpiForeSITE/summrt")
 ```
 
 ## Example

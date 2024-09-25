@@ -37,19 +37,16 @@ jobs:
         - uses: r-lib/actions/setup-r-dependencies@v2
           with:
             extra-packages: any::pkgdown
-            working-directory: "./developers/summrt"
   
         - name: Build site
           run: |
-            cd developers/summrt
             R CMD INSTALL .
             Rscript --vanilla -e "pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)"
-            cd ../..
     
         - name: Upload artifact for GH pages deployment
           uses: actions/upload-pages-artifact@v3
           with:
-            path: "developers/summrt/docs/"
+            path: "./docs/"
     
     deploy:
       # check builds on PRs but only deploy when main changes

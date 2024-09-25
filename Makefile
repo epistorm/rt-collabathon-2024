@@ -3,3 +3,6 @@ docs:
 
 test:
 	Rscript --vanilla -e "devtools::test()"
+
+README.md: README.Rmd
+	Rscript --vanilla -e "rmarkdown::render('README.Rmd')"
