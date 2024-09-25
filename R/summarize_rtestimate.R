@@ -23,14 +23,14 @@ new_summarize <- function(
   checkmate::assert_integer(date)
   checkmate::assert_double(median)
   checkmate::assert_double(lb)
-  checkmate::assert_double(up)
+  checkmate::assert_double(ub)
   checkmate::assert_string(package)
 
   # Checking the length
   len_date <- length(date)
   len_median <- length(median)
   len_lb <- length(lb)
-  len_up <- length(up)
+  len_up <- length(ub)
   if (len_date != len_median || len_date != len_lb || len_date != len_up) {
     stop("The length of the date, median, lb, and ub should be the same.")
   }
@@ -124,10 +124,10 @@ summarize_rtestimate.epinow <- function(x, level = 0.95, ...) {
 #' @details The `estimate_R` method is for the `EpiEstim` package.
 #' @rdname summarize_rtestimate
 summarize_rtestimate.estimate_R <- function(x, ...) {
+  
   if (!requireNamespace("EpiEstim", quietly = TRUE)) {
     cli::cli_abort("You must install the {.pkg EpiEstim} package for this functionality.")
   }
-  checkmate::assert_number(level, lower = 0, upper = 1)
   
   new_summarize(
     date    = x$R$t_end,

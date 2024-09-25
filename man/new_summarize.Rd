@@ -4,7 +4,7 @@
 \alias{new_summarize}
 \title{Create a new summary object}
 \usage{
-new_summarize(date, median, lb, up, package)
+new_summarize(date, median, lb, ub, package)
 }
 \arguments{
 \item{date}{Integer vector. vector of index dates.}
@@ -13,7 +13,7 @@ new_summarize(date, median, lb, up, package)
 
 \item{lb}{Double vector. vector of lower bounds.}
 
-\item{up}{Double vector. vector of upper bounds.}
+\item{ub}{Double vector. vector of upper bounds.}
 
 \item{package}{String. Name of the package.}
 }
@@ -23,7 +23,7 @@ A list of class \code{summrt_summary}. with the following components:
 \item \code{date}: Integer vector. vector of index dates.
 \item \code{median}: Double vector. vector of median values.
 \item \code{lb}: Double vector. vector of lower bounds.
-\item \code{up}: Double vector. vector of upper bounds.
+\item \code{ub}: Double vector. vector of upper bounds.
 \item \code{package}: String. Name of the package.
 }
 }
