@@ -1,7 +1,7 @@
 #' Extract Rt estimation from a model fit
 #' @param x Object to extract Rt from.
 #' @param ... Additional arguments passed to methods.
-#' @export 
+#' @export
 summarize_rtestimate <- function(x, ...) {
   UseMethod("summarize_rtestimate")
 }
@@ -25,9 +25,9 @@ summarize_rtestimate.cv_poisson_rt <- function(
     cli::cli_abort("You must install the {.pkg rtestim} package for this functionality.")
   }
 
-  checkmate::assert_numeric(level, lower = 0, upper = 1, len = 1L)
+  checkmate::assert_number(lambda, lower = 0)
+  checkmate::assert_number(level, lower = 0, upper = 1)
   cb <- rtestim::confband(x, lambda = lambda, level = level, ...)
-  alpha <- (1 - level) / 2
   tibble::tibble(
     Date = x$x,
     Rt_median = cb$fit,
@@ -42,13 +42,26 @@ summarize_rtestimate.poisson_rt <- function(x, level = 0.95, lambda = NULL, ...)
     cli::cli_abort("You must install the {.pkg rtestim} package for this functionality.")
   }
 
-  checkmate::assert_numeric(level, lower = 0, upper = 1, len = 1L)
+  if (is.null(lambda)) {
+    lambda <- 10^median(log10(x$lambda))
+  }
+  checkmate::assert_number(lambda, lower = 0)
+  checkmate::assert_number(level, lower = 0, upper = 1)
   cb <- rtestim::confband(x, lambda = lambda, level = level, ...)
-  alpha <- (1 - level) / 2
   tibble::tibble(
     Date = x$x,
     Rt_median = cb$fit,
     Rt_lb = cb[[2]], # danger
     Rt_ub = cb[[3]]
   )
+}
+
+summarize_rtestimate.epinow <- function(x, level = 0.95, ...) {
+
+  if (!requireNamespace("epinow2", quietly = TRUE)) {
+    cli::cli_abort("You must install the {.pkg epinow2} package for this functionality.")
+  }
+  checkmate::assert_number(level, lower = 0, upper = 1)
+
+  res <- x$estimates$summarized %>% dplyr::select()
 }
