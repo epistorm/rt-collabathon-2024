@@ -37,6 +37,7 @@ summarize_rtestimate.cv_poisson_rt <- function(
 }
 
 #' @rdname summarize_rtestimate
+#' @importFrom stats median
 #' @export
 summarize_rtestimate.poisson_rt <- function(x, level = 0.95, lambda = NULL, ...) {
 
@@ -45,7 +46,7 @@ summarize_rtestimate.poisson_rt <- function(x, level = 0.95, lambda = NULL, ...)
   }
 
   if (is.null(lambda)) {
-    lambda <- 10^median(log10(x$lambda))
+    lambda <- 10^stats::median(log10(x$lambda))
   }
   checkmate::assert_number(lambda, lower = 0)
   checkmate::assert_number(level, lower = 0, upper = 1)
@@ -67,5 +68,5 @@ summarize_rtestimate.epinow <- function(x, level = 0.95, ...) {
   }
   checkmate::assert_number(level, lower = 0, upper = 1)
 
-  res <- x$estimates$summarized |> dplyr::select()
+  # res <- x$estimates$summarized |> dplyr::select()
 }
