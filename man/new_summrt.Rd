@@ -21,6 +21,10 @@ new_summrt(date, median, lb, ub, package, notes)
 \item{package}{String. Name of the package.}
 
 \item{notes}{String. Notes about the summary.}
+
+\item{x}{An object of class \code{summrt_summary}.}
+
+\item{...}{Additional arguments passed to methods.}
 }
 \value{
 A list of class \code{summrt_summary}. with the following components:

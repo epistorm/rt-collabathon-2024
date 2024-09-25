@@ -55,6 +55,8 @@ new_summrt <- function(
 
 #' @export
 #' @rdname new_summrt 
+#' @param x An object of class `summrt_summary`.
+#' @param ... Additional arguments passed to methods.
 print.summrt_summary <- function(x, ...) {
   cat("Summary of Rt estimation\n")
   cat("Package : ", x$package, "\n")
