@@ -1,3 +1,4 @@
+
 # Example data
 rtestim_obj <- readRDS(
   system.file("extdata", "rtestim_example.rds", package = "summrt")
@@ -22,6 +23,7 @@ message("Check that there are no NAs in median, lbs, ubs")
 expect_true(all(!is.na(std_rtestim$estimates$median)))
 expect_true(all(!is.na(std_rtestim$estimates$lb)))
 expect_true(all(!is.na(std_rtestim$estimates$ub)))
+
 
 ## Check the cv method, numeric lambda choice
 std_rtestim <- summarize_rtestimate(rtestim_obj, lambda = rtestim_obj$lambda[27])
