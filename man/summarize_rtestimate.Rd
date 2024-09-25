@@ -28,7 +28,7 @@ summarize_rtestimate(x, ..., notes = "")
 
 \method{summarize_rtestimate}{estimate_R}(x, ..., notes = "")
 
-\method{summarize_rtestimate}{Rt}(x, ...)
+\method{summarize_rtestimate}{Rt}(x, ..., notes = "")
 }
 \arguments{
 \item{x}{Object to extract Rt from.}
