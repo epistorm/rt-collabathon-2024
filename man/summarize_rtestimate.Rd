@@ -10,17 +10,23 @@
 \alias{summarize_rtestimate.Rt}
 \title{Extract Rt estimation from a model fit}
 \usage{
-summarize_rtestimate(x, ...)
+summarize_rtestimate(x, ..., notes = "")
 
-\method{summarize_rtestimate}{default}(x, ...)
+\method{summarize_rtestimate}{default}(x, ..., notes = "")
 
-\method{summarize_rtestimate}{cv_poisson_rt}(x, level = 0.95, lambda = "lambda.1se", ...)
+\method{summarize_rtestimate}{cv_poisson_rt}(
+  x,
+  level = 0.95,
+  lambda = "lambda.1se",
+  ...,
+  notes = "cv_poisson_rt"
+)
 
-\method{summarize_rtestimate}{poisson_rt}(x, level = 0.95, lambda = NULL, ...)
+\method{summarize_rtestimate}{poisson_rt}(x, level = 0.95, lambda = NULL, ..., notes = "poisson_rt")
 
-\method{summarize_rtestimate}{epinow}(x, level = 0.95, ...)
+\method{summarize_rtestimate}{epinow}(x, level = 0.95, ..., notes = "")
 
-\method{summarize_rtestimate}{estimate_R}(x, ...)
+\method{summarize_rtestimate}{estimate_R}(x, ..., notes = "")
 
 \method{summarize_rtestimate}{Rt}(x, ...)
 }
@@ -28,6 +34,8 @@ summarize_rtestimate(x, ...)
 \item{x}{Object to extract Rt from.}
 
 \item{...}{Additional arguments passed to methods.}
+
+\item{notes}{String. Optional notes to add to the summary.}
 
 \item{level}{Confidence level for the confidence interval.}
 
