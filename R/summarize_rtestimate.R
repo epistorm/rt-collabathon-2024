@@ -100,7 +100,7 @@ summarize_rtestimate.cv_poisson_rt <- function(
   cb <- rtestim::confband(x, lambda = lambda, level = level, ...)
 
   new_summrt(
-    date = as.integer(x$x),
+    date = as.integer(x$full_fit$x),
     median = cb$fit,
     lb = cb[[2]], # danger
     ub = cb[[3]],
